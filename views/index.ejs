@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>socket</title>
+    <meta name="description" content="voting using Node.js">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <div id="results"></div>
+    <h2>¿QUE SISTEMA OPERATIVO TE GUSTA MAS?</h2>
+    <form class="button-position" id="voteButton">
+        <p>Opciones</p>
+        <input type="radio" name="vote" value="yes" id="yesButton">LINUX<br>
+        <input type="radio" name="vote" value="no" id="noButton">WINDOWS<br />
+        <p> <strong>Resultados</strong> </p>
+        <p> LINUX: <span id="showYesses"></span> </p>
+        <p> WINDOWS: <span id="showNos"></span></p>
+    </form>
+</body>
+
+</html>
+
+
+<!--
+
+    depues que sa  kauil agregas esta parte de nuevo 
+    para que se vea un poco mas y esta parte lo cortas y lo pegas en otro lugar mientras kauil sube.
+    
+    // aqui agrea de nuevo sergio
+        socket.on('sum_all', function(data) {
+            console.log('Total de votos: ' + JSON.stringify(data.response));
+            all_votes = JSON.stringify(data.response);
+            return all_votes;
+        });
+
+// aqui terminda de subir
+-->
