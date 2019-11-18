@@ -36,6 +36,21 @@
             all_votes = JSON.stringify(data.response);
             return all_votes;
         });
+})   
+</script>
+</head>
 
-// aqui terminda de subir
--->
+<body>
+    <div id="results"></div>
+    <h2>¿QUE SISTEMA OPERATIVO TE GUSTA MAS?</h2>
+    <form class="button-position" id="voteButton">
+        <p>Opciones</p>
+        <input type="radio" name="vote" value="yes" id="yesButton">LINUX<br>
+        <input type="radio" name="vote" value="no" id="noButton">WINDOWS<br />
+        <p> <strong>Resultados</strong> </p>
+        <p> LINUX: <span id="showYesses"></span> </p>
+        <p> WINDOWS: <span id="showNos"></span></p>
+    </form>
+</body>
+
+</html>
