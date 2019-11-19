@@ -6,7 +6,71 @@
     <title>socket</title>
     <meta name="description" content="voting using Node.js">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var socket = io.connect('172.16.0.161:8080', {
+                'forceNew': true
+            });
+    
+            socket.on('server_response', function(data) {
+                console.log('El servidor dice: ' + data.response);
+            });
+    
+            var votedBefore = false;
+            var all_votes;
+            var yes_votes;
+            var no_votes;
+    
+            $('#voteButton').click(function() {
+                if ($('#yesButton').is(':checked')) {
+                    console.log('Votando SI en el servidor');
+                    if (!votedBefore) {
+                        votedBefore = true;
+                        socket.emit("vote", {
+                            newVote: "newYes"
+                        });
+                    } else {
+                        socket.emit("vote", {
+                            newVote: "changeToYes"
+                        });
+                    }
+                } else if ($('#noButton').is(':checked')) {
+                    console.log('Votando No en el servidor');
+                    if (!votedBefore) {
+                        votedBefore = true;
+                        socket.emit("vote", {
+                            newVote: "newNo"
+                        });
+                    } else {
+                        socket.emit("vote", {
+                            newVote: "changeToNo"
+                        });
+                    }
+                }
+            });
+            // inicia la suma de votos:'Si'
+            socket.on('sum_yesVotes', function(data) {
+                console.log('Total de votos si: ' + data.response);
+                $('#showYesses').html(JSON.stringify(data.response));
+                yes_votes = JSON.stringify(data.response);
+                return yes_votes;
+            });
+            // inicia la suma de votos: 'No'
+            socket.on('sum_noVotes', function(data) {
+                console.log('Total de votos no: ' + JSON.stringify(data.response));
+                $('#showNos').html(JSON.stringify(data.response));
+                no_votes = JSON.stringify(data.response);
+                return no_votes;
+            });
+            // aqui agrea de nuevo sergio
+    
+            // aqui terminda de subir
+        })
+    </script>
+
 </head>
 
 <body>
